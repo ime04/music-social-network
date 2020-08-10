@@ -3,5 +3,11 @@
     "psr-4": {
       "MusicProject\\": "src/"
     }
+  },
+  "require": {
+    "symfony/routing": "^5.1",
+    "symfony/http-foundation": "^5.1",
+    "symfony/yaml": "^5.1",
+    "symfony/config": "^5.1"
   }
 }
