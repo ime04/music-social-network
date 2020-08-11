@@ -1,5 +1,3 @@
 <?php
 
-echo 'estoy a tope jefe de equipo. Pum Espartaco!';
-
-echo 'Forzando deploy';
+echo 'esto es una prueba';
