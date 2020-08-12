@@ -1,3 +1,3 @@
 <?php
 
-echo 'esto es una pruebaa';
+include_once('./vendor/autoload.php');
