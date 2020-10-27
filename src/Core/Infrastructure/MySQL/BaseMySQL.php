@@ -10,6 +10,6 @@ class BaseMySQL
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=MusicSocialNetWork', 'victor', '=PM~U.MfJvg%k2L}');
+        $this->pdo = new PDO('mysql:host=127.0.0.1:3308;dbname=MusicSocialNetWork', 'victor', '=PM~U.MfJvg%k2L}');
     }
 }
