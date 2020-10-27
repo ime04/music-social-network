@@ -16,14 +16,16 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
         parent::__construct();
     }
 
-    public function insert($name = 'test', $email = 'test', $password = 'test'): void
+    public function insert($username = 'test', $email = 'test', $password = 'test'): void
     {
         $this->pdo->query(
-            $this->genericBuilder->insert()->setTable('users')->setValues([
-                'username' => $name,
-                'email'    => $email,
-                'password' => $password,
-            ])
+            $this->genericBuilder->insert()
+                ->setTable('user')
+                ->setValues([
+                    'username' => $username,
+                    'email'    => $email,
+                    'password' => $password,
+                ])
         );
     }
 
