@@ -3,6 +3,7 @@
 namespace MusicProject\Core\Infrastructure\MySQL;
 
 use PDO;
+use PDOException;
 
 class BaseMySQL
 {
@@ -10,6 +11,10 @@ class BaseMySQL
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=127.0.0.1:3308;dbname=MusicSocialNetWork', 'victor', '=PM~U.MfJvg%k2L}');
+        try {
+            $this->pdo = new PDO('mysql:host=localhost;dbname=MusicSocialNetWork', 'victor', '=PM~U.MfJvg%k2L}');
+        } catch(PDOException $ex){
+            die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
+        }
     }
 }
