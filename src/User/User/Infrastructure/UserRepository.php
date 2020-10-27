@@ -22,9 +22,9 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
             $this->genericBuilder->insert()
                 ->setTable('users')
                 ->setValues([
-                    'username' => $username,
-                    'email'    => $email,
-                    'password' => $password,
+                    'username' => 'test',
+                    'email'    => 'test',
+                    'password' => 'ttttttttest',
                 ])
         );
     }
