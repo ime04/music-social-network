@@ -2,7 +2,7 @@
 
 namespace User\User\Infrastructure;
 
-use MusicProject\User\User\Infrastructure\UserRepository;
+use MusicProject\User\User\Infrastructure\MySQLRepositories\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class UserRepositoryTest extends TestCase

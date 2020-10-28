@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\User\User\Infrastructure;
+namespace MusicProject\User\User\Infrastructure\MySQLRepositories;
 
 use MusicProject\Core\Infrastructure\MySQL\BaseMySQL;
 use MusicProject\User\User\Domain\UserRepositoryInterface;
@@ -14,7 +14,8 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
         $users->insert(
             [
                 ['username' => $username, 'email' => $email, 'password' => $password]
-            ])->execute();
+            ]
+        )->execute();
     }
 
 }

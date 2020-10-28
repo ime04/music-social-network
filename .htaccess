@@ -2,4 +2,4 @@ RewriteEngine on
 
 RewriteRule ^test$ index.php [NC]
 
-RewriteRule ^profile/register$ index.php [NC]
+RewriteRule ^user/register$ index.php [NC]
