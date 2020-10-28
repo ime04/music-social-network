@@ -2,6 +2,7 @@
 
 namespace MusicProject\Core\Infrastructure\Config;
 
+use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -38,9 +39,9 @@ class Core implements HttpKernelInterface
     }
 
     public function map($path, $controller) {
-        $this->routes->add($path, new Route(
-            $path,
-            array('controller' => $controller)
+        $this->routes->add('user-registre', new Route(
+            '/user/register',
+            array('controller' => RegisterUserAction::class)
         ));
     }
 }
