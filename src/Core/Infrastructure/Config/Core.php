@@ -19,6 +19,10 @@ class Core implements HttpKernelInterface
     public function __construct()
     {
         $this->routes = new RouteCollection();
+        $this->routes->add('user-register', new Route(
+            '/user/register',
+            array('controller' => RegisterUserAction::class)
+        ));
     }
 
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
