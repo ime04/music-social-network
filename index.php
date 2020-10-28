@@ -2,11 +2,11 @@
 
 include_once('./vendor/autoload.php');
 
-use \DI\ContainerBuilder;
+use MusicProject\Core\Infrastructure\Config\CommonContainerBuilder;
 
 try {
     global $container;
-    $container = new ContainerBuilder();
+    $container = new CommonContainerBuilder();
 } catch (Exception $exception) {
     echo 'exception : ' . $exception;
 }
