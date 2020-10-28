@@ -1,12 +1,13 @@
 <?php
 
-echo 'eeeeee';
-/*namespace MusicProject\User\User\Infrastructure\Controllers;
+namespace MusicProject\User\User\Infrastructure\Controllers;
+
+use Symfony\Component\HttpFoundation\Response;
 
 class RegisterUserAction
 {
-    public function __invoke()
+    public function __invoke() : Response
     {
-        echo 'entra';
+        return new Response('entraaaaaaa');
     }
-}*/
+}
