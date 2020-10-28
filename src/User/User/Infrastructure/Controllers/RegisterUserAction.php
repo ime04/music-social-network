@@ -1,6 +1,7 @@
 <?php
 
-namespace MusicProject\User\User\Infrastructure\Controllers;
+echo 'eeeeee';
+/*namespace MusicProject\User\User\Infrastructure\Controllers;
 
 class RegisterUserAction
 {
@@ -8,4 +9,4 @@ class RegisterUserAction
     {
         echo 'entra';
     }
-}
+}*/
