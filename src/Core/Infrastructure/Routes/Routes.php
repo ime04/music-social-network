@@ -1,16 +1,9 @@
 <?php
 
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
-use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
+use Symfony\Component\Routing;
 
-return function (RoutingConfigurator $routes) {
-    $routes->add('register', '/user/register')
-        // the controller value has the format [controller_class, method_name]
-        ->controller([RegisterUserAction::class])
-        ->methods(['POST'])
+$routes = new Routing\RouteCollection();
+$routes->add('user-register', new Routing\Route('/user/register', ['name' => 'World']));
+$routes->add('bye', new Routing\Route('/bye'));
 
-        // if the action is implemented as the __invoke() method of the
-        // controller class, you can skip the 'method_name' part:
-        // ->controller(BlogController::class)
-    ;
-};
+return $routes;
