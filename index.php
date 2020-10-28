@@ -1,13 +1,14 @@
 <?php
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 include_once('./vendor/autoload.php');
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use MusicProject\Core\Infrastructure\Config\Core;
+use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
 
 $request = Request::createFromGlobals();
-
-$response = new Response('Goodbye!');
+$app = new Core();
+$response = $app->handle($request);
+$app->map('/user/register', RegisterUserAction::class);
 $response->send();
