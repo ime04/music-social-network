@@ -2,15 +2,14 @@
 
 namespace MusicProject\Core\Infrastructure\Config;
 
-use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Routing\Route;
 
 class Core implements HttpKernelInterface
 {
@@ -18,7 +17,7 @@ class Core implements HttpKernelInterface
 
     public function __construct()
     {
-        $this->routes = $this->getRoutes();
+        $this->routes = new RouteCollection();
     }
 
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
@@ -38,13 +37,10 @@ class Core implements HttpKernelInterface
         return $response;
     }
 
-    private function getRoutes()
-    {
-        return function (RoutingConfigurator $routes) {
-            $this->routes->add('register-user', '/user/register')
-                ->controller([RegisterUserAction::class, ''])
-                ->methods(['GET', 'HEAD'])
-            ;
-        };
+    public function map($path, $controller) {
+        $this->routes->add($path, new Route(
+            $path,
+            array('controller' => $controller)
+        ));
     }
 }
