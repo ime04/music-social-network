@@ -9,13 +9,14 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
 
 try
 {
     // Init basic route
     $userRegisterRoute = new Route(
         '/user/register',
-        array('controller' => 'UserRegisterAction')
+        array('controller' => RegisterUserAction::class)
     );
 
     // Init route with dynamic placeholders
