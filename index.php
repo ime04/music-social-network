@@ -11,6 +11,7 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use MusicProject\Core\Infrastructure\Routes\Routes;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 try
 {
@@ -27,7 +28,11 @@ try
         $response->send();
     }
 }
-catch (ResourceNotFoundException $e)
+catch (ResourceNotFoundException $exception)
 {
-    echo $e->getMessage();
+    echo $exception->getMessage();
+}
+catch (MethodNotAllowedException $exception)
+{
+    echo 'Método no permitido';
 }

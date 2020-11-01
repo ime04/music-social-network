@@ -14,6 +14,7 @@ class Routes {
             '/user/register',
             array('controller' => RegisterUserAction::class)
         );
+        $userRegisterRoute->setMethods(['POST']);
         $routes = new RouteCollection();
         $routes->add('user_register', $userRegisterRoute);
         return $routes;
