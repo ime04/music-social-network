@@ -1,9 +1,21 @@
 <?php
 
-use Symfony\Component\Routing;
+namespace MusicProject\Core\Infrastructure\Routes;
 
-$routes = new Routing\RouteCollection();
-$routes->add('user-register', new Routing\Route('/user/register', ['name' => 'World']));
-$routes->add('bye', new Routing\Route('/bye'));
+use Symfony\Component\Routing\Route;
+use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
+use Symfony\Component\Routing\RouteCollection;
 
-return $routes;
+class Routes {
+
+    public function __invoke() : RouteCollection
+    {
+        $userRegisterRoute = new Route(
+            '/user/register',
+            array('controller' => RegisterUserAction::class)
+        );
+        $routes = new RouteCollection();
+        $routes->add('user_register', $userRegisterRoute);
+        return $routes;
+    }
+}
