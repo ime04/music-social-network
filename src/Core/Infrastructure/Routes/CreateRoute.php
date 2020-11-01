@@ -2,7 +2,6 @@
 
 namespace MusicProject\Core\Infrastructure\Routes;
 
-use MusicProject\Profile\User\Infrastructure\Controllers\RegisterUserAction;
 use Symfony\Component\Routing\Route;
 
 class CreateRoute

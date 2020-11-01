@@ -9,13 +9,13 @@ use ClanCats\Hydrahon\Query\Sql\FetchableInterface;
 
 class BaseMySQL
 {
-    protected Builder $h;
+    protected Builder $builderMySQL;
 
     public function __construct()
     {
         try {
             $connection = new PDO('mysql:host=localhost;dbname=MusicSocialNetWork', 'victor', '=PM~U.MfJvg%k2L}');
-            $this->h = new Builder('mysql', function($query, $queryString, $queryParameters) use($connection)
+            $this->builderMySQL = new Builder('mysql', function($query, $queryString, $queryParameters) use($connection)
             {
                 $statement = $connection->prepare($queryString);
                 $statement->execute($queryParameters);

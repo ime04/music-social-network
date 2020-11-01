@@ -8,12 +8,12 @@ use MusicProject\Profile\User\Domain\UserRepositoryInterface;
 class UserRepository extends BaseMySQL implements UserRepositoryInterface
 {
 
-    public function insert($username = 'test', $email = 'test', $password = 'test'): void
+    public function insert(string $userName, string $email, string $password) : void
     {
-        $users = $this->h->table('users');
+        $users = $this->builderMySQL->table('users');
         $users->insert(
             [
-                ['username' => $username, 'email' => $email, 'password' => $password]
+                ['username' => $userName, 'email' => $email, 'password' => $password]
             ]
         )->execute();
     }

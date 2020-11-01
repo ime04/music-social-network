@@ -4,5 +4,5 @@ namespace MusicProject\Profile\User\Domain;
 
 interface UserRepositoryInterface
 {
-    public function insert() : void;
+    public function insert(string $userName, string $email, string $password) : void;
 }
