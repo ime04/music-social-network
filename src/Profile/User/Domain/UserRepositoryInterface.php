@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\User\User\Domain;
+namespace MusicProject\Profile\User\Domain;
 
 interface UserRepositoryInterface
 {

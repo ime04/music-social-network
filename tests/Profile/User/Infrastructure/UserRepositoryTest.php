@@ -1,8 +1,8 @@
 <?php
 
-namespace User\User\Infrastructure;
+namespace Tests\User\User\Infrastructure;
 
-use MusicProject\User\User\Infrastructure\MySQLRepositories\UserRepository;
+use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class UserRepositoryTest extends TestCase

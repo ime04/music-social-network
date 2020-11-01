@@ -1,8 +1,8 @@
 <?php
 
-namespace MusicProject\User\User\Domain\Services;
+namespace MusicProject\Profile\User\Domain\Services;
 
-use MusicProject\User\User\Domain\User;
+use MusicProject\Profile\User\Domain\User;
 
 class RegisterUser
 {

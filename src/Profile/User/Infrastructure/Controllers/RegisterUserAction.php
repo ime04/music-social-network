@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\User\User\Infrastructure\Controllers;
+namespace MusicProject\Profile\User\Infrastructure\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;

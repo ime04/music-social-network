@@ -1,9 +1,9 @@
 <?php
 
-namespace MusicProject\User\User\Infrastructure\MySQLRepositories;
+namespace MusicProject\Profile\User\Infrastructure\MySQLRepositories;
 
 use MusicProject\Core\Infrastructure\MySQL\BaseMySQL;
-use MusicProject\User\User\Domain\UserRepositoryInterface;
+use MusicProject\Profile\User\Domain\UserRepositoryInterface;
 
 class UserRepository extends BaseMySQL implements UserRepositoryInterface
 {
