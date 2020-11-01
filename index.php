@@ -24,11 +24,12 @@ try
     $context->fromRequest(Request::createFromGlobals());
     $matcher = new UrlMatcher($routes, $context);
     $parameters = $matcher->match($context->getPathInfo());
-    $response = (new $parameters['controller'])->__invoke();
+    //$response = (new $parameters['controller'])->__invoke();
     $controller = $container->get($parameters['controller']);
     var_dump($controller);
     if (method_exists($controller, '__invoke')) {
-        return $controller->__invoke();
+        $response = $controller->__invoke();
+        $response->send();
     }
 }
 catch (ResourceNotFoundException $e)
