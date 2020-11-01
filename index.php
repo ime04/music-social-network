@@ -27,12 +27,8 @@ try
         $response = $controller->__invoke();
         $response->send();
     }
-}
-catch (ResourceNotFoundException $exception)
-{
+} catch (ResourceNotFoundException $exception) {
     echo $exception->getMessage();
-}
-catch (MethodNotAllowedException $exception)
-{
-    echo 'Método no permitido';
+} catch (MethodNotAllowedException $exception) {
+    echo 'Método no permitido' . $exception->getMessage();
 }
