@@ -8,13 +8,15 @@ use Symfony\Component\Routing\Route;
 return [
     'userRegister' => [
         'name' => 'user-register',
-        'route' => function() {
-            $userRegisterRoute = new Route(
-                '/user/register',
-                array('controller' => RegisterUserAction::class)
-            );
-            $userRegisterRoute->setMethods(['POST']);
-            return $userRegisterRoute;
-        }
+        'route' => getUserRegisterRoute()
     ]
 ];
+
+function getUserRegisterRoute() {
+    $userRegisterRoute = new Route(
+        '/user/register',
+        array('controller' => RegisterUserAction::class)
+    );
+    $userRegisterRoute->setMethods(['POST']);
+    return $userRegisterRoute;
+}
