@@ -2,21 +2,31 @@
 
 namespace MusicProject\Core\Infrastructure\Routes;
 
-use Symfony\Component\Routing\Route;
-use MusicProject\User\User\Infrastructure\Controllers\RegisterUserAction;
 use Symfony\Component\Routing\RouteCollection;
 
 class Routes {
 
+    private LoadRoutes $loadRoutes;
+    private RouteCollection $routes;
+
+    public function __construct(
+        LoadRoutes $loadRoutes
+    ) {
+        $this->loadRoutes = $loadRoutes;
+        $this->routes = new RouteCollection();
+    }
+
     public function __invoke() : RouteCollection
     {
-        $userRegisterRoute = new Route(
-            '/user/register',
-            array('controller' => RegisterUserAction::class)
-        );
-        $userRegisterRoute->setMethods(['POST']);
-        $routes = new RouteCollection();
-        $routes->add('user_register', $userRegisterRoute);
-        return $routes;
+        $loadRoutes = $this->loadRoutes->__invoke();
+        return $this->addRoutes($loadRoutes);
+    }
+
+    private function addRoutes(array $routes) : RouteCollection
+    {
+        foreach ($routes as $route) {
+            $this->routes->add($route['name'], $route['route']);
+        }
+        return $this->routes;
     }
 }
