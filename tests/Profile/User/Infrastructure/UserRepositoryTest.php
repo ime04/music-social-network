@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\User\User\Infrastructure;
+namespace Tests\Profile\User\Infrastructure;
 
 use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
 use PHPUnit\Framework\TestCase;
