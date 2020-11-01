@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/index.css">
+    <title>Music Social Network</title>
+    <link rel="stylesheet" href="resources/css/index.css">
 </head>
 <body>
     <div class="login-page">
@@ -14,17 +14,21 @@
             <input type="password" placeholder="password"/>
             <input type="password" placeholder="repeat password"/>
             <input type="text" placeholder="email address"/>
-            <button>Register</button>
-            <p class="message">Already registered? <a id="sign-in" href="#">Sign In</a></p>
+            <button id="user-register">Register</button>
+            <p class="message">Already registered?
+                <a id="sign-in" href="#">Sign In</a>
+            </p>
           </form>
           <form id="login-form" class="login-form">
             <input type="text" placeholder="username"/>
             <input type="password" placeholder="password"/>
-            <button>login</button>
-            <p class="message">Not registered? <a id="register" href="#">Create an account</a></p>
+            <button id="user-login">login</button>
+            <p class="message">Not registered?
+                <a id="register" href="#">Create an account</a>
+            </p>
           </form>
         </div>
       </div>
-    <script src="js/index.js" type="text/javascript"></script>
+    <script src="resources/js/index.js" type="text/javascript"></script>
 </body>
 </html>
