@@ -14,20 +14,21 @@ class BaseMySQL
     private const USERNAME = 'victor';
     private const PASSWORD = '=PM~U.MfJvg%k2L}';
 
+    protected PDO $connection;
     protected Builder $builderMySQL;
 
     public function __construct()
     {
         try {
-            $connection = new PDO(
+            $this->connection = new PDO(
                 sprintf('mysql:host=%s;dbname=%s', self::HOST, self::DATABASE),
                 self::USERNAME,
                 self::PASSWORD
             );
             $this->builderMySQL = new Builder(
                 'mysql',
-                function($query, $queryString, $queryParameters) use ($connection) {
-                    $statement = $connection->prepare($queryString);
+                function($query, $queryString, $queryParameters) {
+                    $statement = $this->connection->prepare($queryString);
                     $statement->execute($queryParameters);
                     if ($query instanceof FetchableInterface) {
                         return $statement->fetchAll(PDO::FETCH_ASSOC);
