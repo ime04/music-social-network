@@ -16,7 +16,7 @@ buttonToRegister.addEventListener('click', () => {
 });
 
 //INPUT CONST
-const nameField = document.getElementById('name-field');
+/*const nameField = document.getElementById('name-field');
 const passwordField = document.getElementById('password-field');
 const repeatPasswordField = document.getElementById('repeat-password-field');
 const emailField = document.getElementById('email-field');
@@ -37,3 +37,4 @@ function validateField(field){
         field.style.backgroundColor = '';
     }
 }
+*/
