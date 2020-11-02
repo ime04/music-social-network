@@ -19,4 +19,15 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
         )->execute();
     }
 
+    public function deleteByID(int $id)
+    {
+        $users = $this->builderMySQL->table('users');
+        $users->delete()->where('id', $id)->execute();
+    }
+
+    public function getLastInsertID()
+    {
+        
+    }
+
 }
