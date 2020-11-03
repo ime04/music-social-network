@@ -18,7 +18,7 @@ try
     global $container;
     $container = new DI\Container();
     $routes = $container->call(Routes::class, []);
-    $context = new RequestContext();
+    $context = $container->get(RequestContext::class);
     $context->fromRequest(Request::createFromGlobals());
     $matcher = new UrlMatcher($routes, $context);
     $parameters = $matcher->match($context->getPathInfo());
