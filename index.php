@@ -12,14 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use MusicProject\Core\Infrastructure\Routes\Routes;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
-use DI\ContainerBuilder;
-use DI\Container;
+use MusicProject\Core\Infrastructure\Services\Setup;
 
 try
 {
     global $container;
-    $container = new ContainerBuilder(Container::class);
-    $container->addDefinitions(getDefinition());
+    $container = (new Setup())->getContainer();
     $routes = $container->call(Routes::class, []);
     $context = new RequestContext();
     $context->fromRequest(Request::createFromGlobals());
@@ -34,11 +32,4 @@ try
     echo $exception->getMessage();
 } catch (MethodNotAllowedException $exception) {
     echo 'Método no permitido' . $exception->getMessage();
-}
-
-function getDefinition() : array
-{
-    return [
-        Request::class => Request::createFromGlobals()
-    ];
 }
