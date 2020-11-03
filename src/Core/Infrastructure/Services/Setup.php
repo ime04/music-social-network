@@ -15,6 +15,7 @@ class Setup
     {
         $containerBuilder = new ContainerBuilder(Container::class);
         $containerBuilder->addDefinitions($this->getDefinition());
+        $this->container = $containerBuilder->build();
     }
 
     public function getContainer() : ContainerInterface
