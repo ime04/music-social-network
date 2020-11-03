@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use MusicProject\Core\Infrastructure\Routes\Routes;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
-use MusicProject\Core\Infrastructure\Services\Setup;
+use MusicProject\Core\Infrastructure\Services\InitContainer;
 
 try
 {
     global $container;
-    $container = (new Setup())->getContainer();
+    $container = (new InitContainer())->get();
     $routes = $container->call(Routes::class, []);
     $context = new RequestContext();
     $context->fromRequest(Request::createFromGlobals());

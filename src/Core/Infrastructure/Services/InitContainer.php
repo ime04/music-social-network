@@ -7,24 +7,25 @@ use Psr\Container\ContainerInterface;
 use DI\Container;
 use Symfony\Component\HttpFoundation\Request;
 
-class Setup
+class InitContainer
 {
     private ContainerInterface $container;
 
     public function __construct()
     {
         $containerBuilder = new ContainerBuilder(Container::class);
-        $containerBuilder->addDefinitions($this->getDefinition());
+        $containerBuilder->addDefinitions($this->getDefinitions());
         $this->container = $containerBuilder->build();
     }
 
-    public function getContainer() : ContainerInterface
+    public function get() : ContainerInterface
     {
         return $this->container;
     }
 
-    private function getDefinition() : array
+    private function getDefinitions() : array
     {
+        //TODO mover a otro sitio
         return [
             Request::class => Request::createFromGlobals()
         ];
