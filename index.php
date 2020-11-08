@@ -10,9 +10,9 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use MusicProject\Core\Infrastructure\Routes\Routes;
+use MusicProject\Shared\Infrastructure\Routes\Routes;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
-use MusicProject\Core\Infrastructure\Services\InitContainer;
+use MusicProject\Shared\Infrastructure\Services\InitContainer;
 
 try
 {

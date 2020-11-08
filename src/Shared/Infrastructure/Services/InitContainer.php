@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\Core\Infrastructure\Services;
+namespace MusicProject\Shared\Infrastructure\Services;
 
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;

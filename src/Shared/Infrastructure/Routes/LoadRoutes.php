@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\Core\Infrastructure\Routes;
+namespace MusicProject\Shared\Infrastructure\Routes;
 
 class LoadRoutes
 {

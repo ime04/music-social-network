@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\Core\Infrastructure\MySQL;
+namespace MusicProject\Shared\Infrastructure\MySQL;
 
 use PDO;
 use PDOException;
