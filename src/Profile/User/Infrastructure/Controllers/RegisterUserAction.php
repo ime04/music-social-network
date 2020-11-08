@@ -17,7 +17,7 @@ class RegisterUserAction
 
     public function __invoke() : Response
     {
-        var_dump($this->request->request->get('password'));
+        var_dump($this->request->request);
         return new Response('entraaaaaaa');
     }
 }
