@@ -14,7 +14,7 @@ class RegisterUser
       $this->userRepository = $userRepository;  
     }
 
-    public function __invoke(string $username, string $password, string $email)
+    public function __invoke(string $username, string $password, string $email) : void
     {
         $user = new User($username, $password, $email);
         $this->userRepository->insert($user);

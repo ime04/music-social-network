@@ -16,7 +16,7 @@ class RegisterUser
 
     public function __invoke(array $request) : void
     {
-        return $this->registerUser->__invoke(
+        $this->registerUser->__invoke(
             $request['username'],
             $request['password'],
             $request['email']
