@@ -2,7 +2,7 @@
 
 namespace MusicProject\Profile\User\Infrastructure\MySQLRepositories;
 
-use MusicProject\Core\Infrastructure\MySQL\BaseMySQL;
+use MusicProject\Shared\Infrastructure\MySQL\BaseMySQL;
 use MusicProject\Profile\User\Domain\User;
 use MusicProject\Profile\User\Domain\UserRepositoryInterface;
 

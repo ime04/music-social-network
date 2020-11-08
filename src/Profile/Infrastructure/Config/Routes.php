@@ -3,7 +3,7 @@
 namespace MusicProject\Profile\User\Infrastructure\Config;
 
 use MusicProject\Profile\User\Infrastructure\Controllers\RegisterUserAction;
-use MusicProject\Core\Infrastructure\Routes\CreateRoute;
+use MusicProject\Shared\Infrastructure\Routes\CreateRoute;
 
 return [
     'userRegister' => [
