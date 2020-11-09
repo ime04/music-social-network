@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\Profile\User\Infrastructure\Config;
+namespace MusicProject\Profile\User\Config;
 
 use MusicProject\Profile\User\Infrastructure\Controllers\RegisterUserAction;
 use MusicProject\Shared\Infrastructure\Routes\CreateRoute;
