@@ -13,7 +13,8 @@
     "clancats/hydrahon": "^1.1",
     "php-di/php-di": "^6.2",
     "ext-pdo": "*",
-    "symfony/http-kernel": "^5.1"
+    "symfony/http-kernel": "^5.1",
+    "guzzlehttp/guzzle": "^7.2"
   },
   "require-dev": {
     "phpunit/phpunit": "^7"
