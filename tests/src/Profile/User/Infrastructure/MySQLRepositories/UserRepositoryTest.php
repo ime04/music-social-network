@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\src\Profile\User\Infrastructure;
+namespace Tests\src\Profile\User\Infrastructure\MySQLRepositories;
 
 use MusicProject\Profile\User\Domain\User;
 use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
