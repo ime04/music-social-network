@@ -2,7 +2,9 @@
 
 namespace MusicProject\Profile\User\Domain;
 
-class User
+use MusicProject\Shared\Domain\Entity\EntityBase;
+
+class User extends EntityBase
 {
     private string $username;
     private string $password;

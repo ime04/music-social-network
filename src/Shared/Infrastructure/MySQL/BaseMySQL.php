@@ -7,7 +7,7 @@ use PDOException;
 use ClanCats\Hydrahon\Builder;
 use ClanCats\Hydrahon\Query\Sql\FetchableInterface;
 
-class BaseMySQL
+abstract class BaseMySQL
 {
     private const HOST = 'localhost';
     private const DATABASE = 'MusicSocialNetWork';
@@ -39,4 +39,6 @@ class BaseMySQL
             die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
         }
     }
+
+
 }
