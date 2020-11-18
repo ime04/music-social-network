@@ -2,10 +2,12 @@
 
 namespace MusicProject\Shared\Infrastructure\MySQL;
 
+use MusicProject\Shared\Domain\Entity\EntityBase;
 use PDO;
 use PDOException;
 use ClanCats\Hydrahon\Builder;
 use ClanCats\Hydrahon\Query\Sql\FetchableInterface;
+use Psr\Container\ContainerInterface;
 
 abstract class BaseMySQL
 {
@@ -14,10 +16,18 @@ abstract class BaseMySQL
     private const USERNAME = 'victor';
     private const PASSWORD = '=PM~U.MfJvg%k2L}';
 
+    private ContainerInterface $container;
     protected PDO $connection;
     protected Builder $builderMySQL;
 
-    public function __construct()
+    public function __construct(
+        ContainerInterface $container
+    ) {
+        $this->container = $container;
+        $this->getConnection();
+    }
+
+    private function getConnection()
     {
         try {
             $this->connection = new PDO(
@@ -34,11 +44,14 @@ abstract class BaseMySQL
                         return $statement->fetchAll(PDO::FETCH_ASSOC);
                     }
                 }
-             );
+            );
         } catch(PDOException $ex){
             die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
         }
     }
-
-
+    protected function buildEntity(string $factoryClass, array $result) : EntityBase
+    {
+        $factory = $this->container->get($factoryClass);
+        return $factory->fromArray($result);
+    }
 }
