@@ -8,4 +8,9 @@ abstract class EntityFactoryBase
     {
 
     }
+
+    private function someFieldIsNotAllowedForThisEntity()
+    {
+
+    }
 }

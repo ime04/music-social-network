@@ -19,6 +19,8 @@ class RegisterUserAction
         $this->registerUser = $registerUser;
     }
 
+    // recibe la petición del javascript y devuelve la respuesta
+    // trabaja con valores primitivos (int, string, array etc etc)
     public function __invoke() : Response
     {
         $this->registerUser->__invoke([
