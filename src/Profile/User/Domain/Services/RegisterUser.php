@@ -3,13 +3,13 @@
 namespace MusicProject\Profile\User\Domain\Services;
 
 use MusicProject\Profile\User\Domain\User;
-use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
+use MusicProject\Profile\User\Domain\UserRepositoryInterface;
 
 class RegisterUser
 {
-    private UserRepository $userRepository;
+    private UserRepositoryInterface $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
       $this->userRepository = $userRepository;  
     }
