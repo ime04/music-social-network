@@ -33,13 +33,6 @@ registerButton.addEventListener('click', () => {
 
     fetch('http://vps551323.ovh.net/user/register', {
         method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/form-data',
-        },
-        referrerPolicy: 'no-referrer',
         body: formData
     }).then(response => {
         console.log(response);
