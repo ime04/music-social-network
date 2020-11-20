@@ -3,7 +3,7 @@
 namespace MusicProject\Shared\ValueObjects\ID;
 
 use MusicProject\Shared\ValueObjects\AbstractValueObject;
-
+//Validar que sea un numero entero y mayor que 0
 class ID extends AbstractValueObject
 {
     protected int $value;
@@ -14,7 +14,7 @@ class ID extends AbstractValueObject
         $this->value = $id;
     }
 
-    protected function validate(): void
+    protected function validate(int $id): void
     {
         // TODO: Implement validate() method.
         // TODO if fail call to invalidArgument function
