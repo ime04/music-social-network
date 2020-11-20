@@ -16,23 +16,31 @@ buttonToRegister.addEventListener('click', () => {
 });
 
 registerButton.addEventListener('click', () => {
-    const data = {
-        username: 'victoraso',
-        password: '1234',
-        email: 'victor@gmail.com',
-    };
+    const userName = document.getElementById('user-name').value;
+    const userPass = document.getElementById('user-pass').value;
+    const userRepeatPass = document.getElementById('user-repeat-pass').value;
+    const userEmail = document.getElementById('user-email').value;
+
+    if (userPass !== userRepeatPass) {
+        alert('Por favor rellene bien la contraseña');
+        return false;
+    }
+
+    const formData = new FormData();
+    formData.append('username', userName);
+    formData.append('password', userPass);
+    formData.append('email', userEmail);
+
     fetch('http://vps551323.ovh.net/user/register', {
         method: 'POST',
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
         headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/form-data',
         },
-        //redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
+        referrerPolicy: 'no-referrer',
+        body: formData
     }).then(response => {
         console.log(response);
     });
