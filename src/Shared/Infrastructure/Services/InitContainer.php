@@ -3,6 +3,8 @@
 namespace MusicProject\Shared\Infrastructure\Services;
 
 use DI\ContainerBuilder;
+use MusicProject\Profile\User\Domain\UserRepositoryInterface;
+use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
 use Psr\Container\ContainerInterface;
 use DI\Container;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,8 @@ class InitContainer
     {
         //TODO mover a otro sitio
         return [
-            Request::class => Request::createFromGlobals()
+            Request::class => Request::createFromGlobals(),
+            UserRepositoryInterface::class => UserRepository::class
         ];
     }
 }
