@@ -10,15 +10,13 @@ class ID extends AbstractValueObject
 
     public function __construct(int $id)
     {
-        //TODO call to validate
+        $this->validate($id);
         $this->value = $id;
     }
 
     protected function validate($id): void
     {
-        // TODO: Implement validate() method.
-        // TODO if fail call to invalidArgument function
-        if (!$id.is_numeric() & $id < 1){
+        if ($id < 1){
             $this->invalidArgument('ID must be a number, greater than 0');
         }
     }

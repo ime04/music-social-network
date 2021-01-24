@@ -11,7 +11,7 @@ abstract class AbstractValueObject
         return $this->value;
     }
 
-    abstract protected function validate(string $value) : void;
+    abstract protected function validate($value) : void;
 
     public function invalidArgument(string $message) : void
     {
