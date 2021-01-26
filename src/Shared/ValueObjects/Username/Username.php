@@ -17,7 +17,10 @@ class Username extends AbstractValueObject
     protected function validate($userName) : void
     {
         if (strlen(trim($userName)) < 3) {
-            $this->invalidArgument('Username is invalid');
+            $this->invalidArgument('Username is too short');
+        }
+        if (preg_match('/[^a-z0-9 _]+/i', $userName)) {
+            $this->invalidArgument('Username contains symbols');
         }
     }
 }
