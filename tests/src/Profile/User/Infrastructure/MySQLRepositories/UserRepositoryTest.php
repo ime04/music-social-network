@@ -9,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 class UserRepositoryTest extends TestCase
 {
+    private const USERNAME = 'Victor';
+    private const PASSWORD = 'test';
+    private const EMAIL = 'victor@gmial.com';
+
     private UserRepository $userRepository;
     private int $lastInsertID;
 
@@ -27,13 +31,17 @@ class UserRepositoryTest extends TestCase
     {
         $this->userRepository->insert(new User('Victor', 'test', 'victor@gmial.com'));
         $this->lastInsertID = $this->userRepository->getLastInsertID();
+        self::assertIsInt($this->lastInsertID);
     }
 
     /** @test */
     public function getByUsername() : void
     {
-        $this->userRepository->insert(new User('Victor', 'test', 'victor@gmial.com'));
+        $this->userRepository->insert(new User(self::USERNAME, self::PASSWORD, self::EMAIL));
         $this->lastInsertID = $this->userRepository->getLastInsertID();
-        $this->userRepository->getByUsername('Victor');
+        $user = $this->userRepository->getByUsername('Victor');
+        self::assertEquals(self::USERNAME, $user->username());
+        self::assertEquals(self::PASSWORD, $user->password());
+        self::assertEquals(self::EMAIL, $user->email());
     }
 }

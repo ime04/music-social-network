@@ -6,20 +6,20 @@ use MusicProject\Shared\Domain\Entity\EntityBase;
 
 class User extends EntityBase
 {
-    private string $username;
+    private string $userName;
     private string $password;
     private string $email;
 
-    public function __construct(string $username, string $password, string $email)
+    public function __construct(string $userName, string $password, string $email)
     {
-        $this->username = $username;
+        $this->userName = $userName;
         $this->password = $password;
         $this->email = $email;
     }
 
     public function userName() : string
     {
-        return $this->username;
+        return $this->userName;
     }
 
     public function password() : string

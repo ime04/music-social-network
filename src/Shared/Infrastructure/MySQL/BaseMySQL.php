@@ -52,6 +52,6 @@ abstract class BaseMySQL
     protected function buildEntity(string $factoryClass, array $result) : EntityBase
     {
         $factory = $this->container->get($factoryClass);
-        return $factory->fromArray($result);
+        return $factory->fromArray($result[0]);
     }
 }

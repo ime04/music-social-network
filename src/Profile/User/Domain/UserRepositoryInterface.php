@@ -10,5 +10,5 @@ interface UserRepositoryInterface
 
     public function deleteByID(int $id) : void;
 
-    public function getByUsername(string $username) : void;
+    public function getByUsername(string $username) : User;
 }
