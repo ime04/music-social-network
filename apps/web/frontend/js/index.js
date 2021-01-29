@@ -41,6 +41,10 @@ registerButton.addEventListener('click', () => {
         //}
        // return response.json();
     });
+
+    //TODO crear nueva petición como la de arriba para el login,
+    // se va a llamar http://vps551323.ovh.net/user/login de tipo GET
+
 });
 
 //INPUT CONST

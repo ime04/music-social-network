@@ -3,3 +3,5 @@ RewriteEngine on
 RewriteRule ^test$ index.php [NC]
 
 RewriteRule ^user/register$ index.php [NC]
+
+RewriteRule ^user/login$ index.php [NC]
