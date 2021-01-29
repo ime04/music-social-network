@@ -31,7 +31,10 @@ class RegisterUserAction
             ]);
             return new Response();
         } catch (\InvalidArgumentException $exception) {
-            return new Response($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+            return new Response(
+                json_encode(["success" => 0, 'message' => $exception->getMessage()]),
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 }
