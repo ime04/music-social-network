@@ -34,7 +34,7 @@ registerButton.addEventListener('click', () => {
     fetch('http://vps551323.ovh.net/user/register', {
         method: 'POST',
         body: formData
-    }).then(response => {
+    }).json().then(response => {
         console.log(response);
     });
 });
