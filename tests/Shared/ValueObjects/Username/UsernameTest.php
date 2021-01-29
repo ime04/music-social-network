@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use \MusicProject\Shared\ValueObjects\Username\Username;
+
 class UsernameTest extends TestCase
 {
     /** @test */
@@ -10,7 +11,7 @@ class UsernameTest extends TestCase
         $validUsernames = ['Victoraso3', '01999284'];
 
         foreach ($validUsernames as $validUsername) {
-            self::assertInstanceOf(Password::class, new Password($validUsername));
+            self::assertInstanceOf(Username::class, new Username($validUsername));
         }
     }
 
