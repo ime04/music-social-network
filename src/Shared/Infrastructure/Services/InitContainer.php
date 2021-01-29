@@ -3,11 +3,8 @@
 namespace MusicProject\Shared\Infrastructure\Services;
 
 use DI\ContainerBuilder;
-use MusicProject\Profile\User\Domain\UserRepositoryInterface;
-use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
 use Psr\Container\ContainerInterface;
 use DI\Container;
-use Symfony\Component\HttpFoundation\Request;
 
 class InitContainer
 {
@@ -17,6 +14,7 @@ class InitContainer
     {
         $containerBuilder = new ContainerBuilder(Container::class);
         $containerBuilder->addDefinitions($this->getDefinitions());
+        $containerBuilder->useAutowiring(true);
         $this->container = $containerBuilder->build();
     }
 
@@ -27,10 +25,6 @@ class InitContainer
 
     private function getDefinitions() : array
     {
-        //TODO mover a otro sitio
-        return [
-            Request::class => Request::createFromGlobals(),
-            UserRepositoryInterface::class => UserRepository::class
-        ];
+        return include(__DIR__ . '/../Definitions/Definitions.php');
     }
 }

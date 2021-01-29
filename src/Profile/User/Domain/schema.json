@@ -1,0 +1,6 @@
+{
+  "id": "MusicProject\\Shared\\ValueObjects\\ID\\ID",
+  "userName" : "MusicProject\\Shared\\ValueObjects\\UserName\\UserName",
+  "password": "MusicProject\\Shared\\ValueObjects\\Password\\Password",
+  "email": "MusicProject\\Shared\\ValueObjects\\Email\\Email"
+}

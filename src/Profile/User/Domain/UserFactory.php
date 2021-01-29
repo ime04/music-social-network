@@ -8,6 +8,11 @@ class UserFactory implements EntityFactoryInterface
 {
     public function fromArray(array $data) : User
     {
-        print_r($data);
+        return new User(
+            //$data['id'],
+            $data['username'],
+            $data['password'],
+            $data['email']
+        );
     }
 }

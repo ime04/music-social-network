@@ -26,10 +26,10 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
         $users->delete()->where('id', $id)->execute();
     }
 
-    public function getByUsername(string $username): void
+    public function getByUsername(string $username) : User
     {
         $users = $this->builderMySQL->table(self::TABLE);
-        $this->buildEntity(
+        return $this->buildEntity(
             $this->getFactory(),
             $users->select()->where('username', $username)->get()
         );
