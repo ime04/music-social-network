@@ -37,7 +37,7 @@ registerButton.addEventListener('click', () => {
     }).then(response => {
         console.log('entra');
         //if(response.success) {
-            console.log('hola', response.success);
+            console.log('hola', JSON.parse(response.success));
         //}
        // return response.json();
     });
