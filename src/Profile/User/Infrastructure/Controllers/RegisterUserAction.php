@@ -23,11 +23,15 @@ class RegisterUserAction
     // trabaja con valores primitivos (int, string, array etc etc)
     public function __invoke() : Response
     {
-        $this->registerUser->__invoke([
-            'password' => $this->request->request->get('password'),
-            'email' => $this->request->request->get('email'),
-            'username' => $this->request->request->get('username')
-        ]);
-        return new Response();
+        try {
+            $this->registerUser->__invoke([
+                'password' => $this->request->request->get('password'),
+                'email' => $this->request->request->get('email'),
+                'username' => $this->request->request->get('username')
+            ]);
+            return new Response();
+        } catch (\InvalidArgumentException $exception) {
+            return new Response($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
     }
 }
