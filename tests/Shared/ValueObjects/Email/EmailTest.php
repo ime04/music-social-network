@@ -14,5 +14,6 @@ class EmailTest extends TestCase
     public function emailFailed() : void
     {
         self::expectException(InvalidArgumentException::class);
-        new Email("victor.com");    }
+        new Email("victor.com");
+    }
 }

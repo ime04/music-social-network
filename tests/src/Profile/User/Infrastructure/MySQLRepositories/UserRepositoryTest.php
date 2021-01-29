@@ -5,6 +5,9 @@ namespace Tests\src\Profile\User\Infrastructure\MySQLRepositories;
 use DI\Container;
 use MusicProject\Profile\User\Domain\User;
 use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
+use MusicProject\Shared\ValueObjects\Email\Email;
+use MusicProject\Shared\ValueObjects\Password\Password;
+use MusicProject\Shared\ValueObjects\Username\Username;
 use PHPUnit\Framework\TestCase;
 
 class UserRepositoryTest extends TestCase
@@ -29,7 +32,10 @@ class UserRepositoryTest extends TestCase
     /** @test */
     public function register() : void
     {
-        $this->userRepository->insert(new User('Victor', 'test', 'victor@gmial.com'));
+        $this->userRepository->insert(new User(
+            new Username('Victor'),
+            new Password('zK3pWUZO'),
+            new Email('victor@gmial.com')));
         $this->lastInsertID = $this->userRepository->getLastInsertID();
         self::assertIsInt($this->lastInsertID);
     }

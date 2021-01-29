@@ -1,11 +1,12 @@
 <?php
 
+namespace MusicProject\Shared\ValueObjects\Email;
+
 use \MusicProject\Shared\ValueObjects\AbstractValueObject;
 
 class Email extends AbstractValueObject
 {
-
-    protected string $email;
+    protected string $value;
 
     public function __construct(string $email)
     {

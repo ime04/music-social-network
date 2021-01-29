@@ -15,9 +15,8 @@ class RegisterUser
     }
 
     //siempre funciona con value objects o entidades (ej User)
-    public function __invoke(string $username, string $password, string $email) : void
+    public function __invoke(User $user) : void
     {
-        $user = new User($username, $password, $email);
         $this->userRepository->insert($user);
     }
 }
