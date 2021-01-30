@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Shared\ValueObjects\Username;
+
 use PHPUnit\Framework\TestCase;
 use \MusicProject\Shared\ValueObjects\Username\Username;
+use InvalidArgumentException;
 
 class UsernameTest extends TestCase
 {

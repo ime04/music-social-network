@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Shared\ValueObjects\ID;
+
 use PHPUnit\Framework\TestCase;
 use MusicProject\Shared\ValueObjects\ID\ID;
+use InvalidArgumentException;
 
 class IDTest extends TestCase
 {

@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Shared\ValueObjects\Password;
+
 use PHPUnit\Framework\TestCase;
 use MusicProject\Shared\ValueObjects\Password\Password;
+use InvalidArgumentException;
 
 class PasswordTest extends TestCase
 {
