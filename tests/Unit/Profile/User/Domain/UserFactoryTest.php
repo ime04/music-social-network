@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\src\Profile\User\Domain;
+namespace Tests\Unit\Profile\User\Domain;
 
 use MusicProject\Profile\User\Domain\UserFactory;
 use MusicProject\Shared\Infrastructure\Services\InitContainer;
@@ -28,5 +28,19 @@ class UserFactoryTest extends TestCase
         self::assertEquals(self::PASSWORD, $user->password()->value());
         self::assertEquals(self::EMAIL, $user->email()->value());
         self::assertEquals(self::ID, $user->id()->value());
+    }
+
+    /** @test */
+    public function invalidFieldForThisEntity() : void
+    {
+        self::expectException(\InvalidArgumentException::class);
+        $container = (new InitContainer())->get();
+        $userFactory = $container->get(UserFactory::class);
+        $userFactory->fromArray([
+            'username' => self::USERNAME,
+            'contrasena' => self::PASSWORD,
+            'email' => self::EMAIL,
+            'id' => self::ID
+        ]);
     }
 }
