@@ -10,4 +10,9 @@ class EntityData
     {
         $this->data = $data;
     }
+
+    public function getData() : array
+    {
+        return $this->data;
+    }
 }
