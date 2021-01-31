@@ -34,13 +34,8 @@ registerButton.addEventListener('click', () => {
     fetch('http://vps551323.ovh.net/user/register', {
         method: 'POST',
         body: formData
-    }).then(response => {
-        console.log('entra');
-        //if(response.success) {
-            console.log('hola', JSON.parse(response.success));
-        //}
-       // return response.json();
-    });
+    }).then(response => response.json())
+        .then(data => console.log(data));
 
     //TODO crear nueva petición como la de arriba para el login,
     // se va a llamar http://vps551323.ovh.net/user/login de tipo GET
