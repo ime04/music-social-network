@@ -39,6 +39,7 @@ class UserRepositoryTest extends TestCase
             ])
         );
         $this->lastInsertID = $this->userRepository->getLastInsertID();
+        $user = $this->userRepository->getByUsername(self::USERNAME);
         self::assertIsInt($this->lastInsertID);
     }
 
