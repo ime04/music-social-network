@@ -53,6 +53,7 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
 
     public function getByUsernameAndPassword(Username $username, Password $password): User
     {
+        //TODO value()
         $users = $this->builderMySQL->table(self::TABLE);
         return $this->buildEntity(
             $this->getFactory(),

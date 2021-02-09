@@ -59,4 +59,10 @@ class UserRepositoryTest extends TestCase
         self::assertEquals(self::PASSWORD, $user->password()->value());
         self::assertEquals(self::EMAIL, $user->email()->value());
     }
+
+    /** @test */
+    public function getByUsernameAndPassword() : void
+    {
+        //TODO crear un test para el metodo getByUsernameAndPassword
+    }
 }
