@@ -3,6 +3,8 @@
 namespace MusicProject\Profile\User\Infrastructure\Controllers;
 
 use MusicProject\Profile\User\Application\LoginUser;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginUserAction
 //TODO va recibir de js username y password
