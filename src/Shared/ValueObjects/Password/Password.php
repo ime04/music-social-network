@@ -3,7 +3,7 @@
 namespace MusicProject\Shared\ValueObjects\Password;
 
 use MusicProject\Shared\ValueObjects\AbstractValueObject;
-// minimo 8 caracteres, string, no vacio, método para codificarlo (sha256)
+
 class Password extends AbstractValueObject
 {
     protected string $value;
@@ -15,7 +15,7 @@ class Password extends AbstractValueObject
     }
 
     protected function validate($password) : void
-    { //self::expectExceptionMessage
+    {
         if(strlen(trim($password)) < 8){
             $this->invalidArgument('Password is too short');
         }

@@ -15,7 +15,11 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
         $users = $this->builderMySQL->table(self::TABLE);
         $users->insert(
             [
-                ['username' => $user->userName()->value(), 'email' => $user->email()->value(), 'password' => $user->password()->value()]
+                [
+                    'username' => $user->userName()->value(),
+                    'email' => $user->email()->value(),
+                    'password' => $user->password()->value()
+                ]
             ]
         )->execute();
     }
