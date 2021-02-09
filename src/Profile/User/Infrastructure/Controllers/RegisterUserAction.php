@@ -31,7 +31,7 @@ class RegisterUserAction
                     'email' => $this->request->request->get('email'),
                     'username' => $this->request->request->get('username')
             ]));
-            return new Response();
+            return new Response(json_encode(["success" => 1]));
         } catch (\InvalidArgumentException $exception) {
             return new Response(
                 json_encode(["success" => 0, 'message' => $exception->getMessage()]),
