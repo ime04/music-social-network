@@ -23,7 +23,7 @@ class RegisterUser
     //TODO como parametro de entrada de __invoke va a recibir un object RequestDTO
     public function __invoke(RequestDTO $request) : void
     {
-        $user = $this->userFactory->fromArray($request);
+        $user = $this->userFactory->fromArray($request->getData());
         $this->registerUser->__invoke($user);
     }
 }
