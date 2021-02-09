@@ -1,11 +1,11 @@
-const buttonToLogin = document.getElementById('sign-in');
+const logginButton = document.getElementById('sign-in');
 const buttonToRegister = document.getElementById('register');
 const registerButton = document.getElementById('user-register');
 
 const formRegister = document.getElementById('register-form');
 const formLogin = document.getElementById('login-form');
 
-buttonToLogin.addEventListener('click', () => {
+logginButton.addEventListener('click', () => {
     formLogin.style.display = 'block';
     formRegister.style.display = 'none';
 });
@@ -47,26 +47,19 @@ registerButton.addEventListener('click', () => {
 
 });
 
-//INPUT CONST
-/*const nameField = document.getElementById('name-field');
-const passwordField = document.getElementById('password-field');
-const repeatPasswordField = document.getElementById('repeat-password-field');
-const emailField = document.getElementById('email-field');
-const errorElement = document.getElementById('error');
+    logginButton.addEventListener('click', () => {
+        const user = document.getElementById('user-name-login').value;
+        const pass = document.getElementById('pass-login').value;
 
-formRegister.addEventListener('submit', (e) =>{
-    let errorMessages = [];
-    validateField(nameField)
-    validateField(passwordField)
-    validateField(repeatPasswordField)
-    validateField(emailField)
-})
+        fetch('http://vps551323.ovh.net/user/login', {
+            method: 'GET',
+            body: formLogin
+        }).then(response => {
+            //if(response.success) {
+            console.log('hola', JSON.parse(response.success));
+            //}
+            // return response.json();
+        })
 
-function validateField(field){
-    if(field.value === '' || field.value === null){
-        field.style.backgroundColor = '#df6464';
-    } else {
-        field.style.backgroundColor = '';
-    }
-}
-*/
+
+    });
