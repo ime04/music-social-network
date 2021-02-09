@@ -35,7 +35,7 @@ registerButton.addEventListener('click', () => {
         method: 'POST',
         body: formData
     }).then(response => response.json())
-        .then(data => function() {
+        .then((data) => {
             if (data.success != 1) {
                 alert(data.message);
             }
