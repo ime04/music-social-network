@@ -3,7 +3,7 @@
 namespace MusicProject\Profile\User\Infrastructure\Controllers;
 
 use MusicProject\Profile\User\Application\RegisterUser;
-use MusicProject\Shared\Application\RequestDTO;
+use MusicProject\Shared\Infrastructure\DTO\RequestDTO;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 

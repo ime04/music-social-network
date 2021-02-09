@@ -35,11 +35,7 @@ registerButton.addEventListener('click', () => {
         method: 'POST',
         body: formData
     }).then(response => response.json())
-        .then(data => console.log(data));
-
-    //TODO crear nueva petición como la de arriba para el login,
-    // se va a llamar http://vps551323.ovh.net/user/login de tipo GET
-
+        .then(data => console.log(data)); //TODO hacer un login y meterte dentro de la plataforma
 });
 
     logginButton.addEventListener('click', () => {

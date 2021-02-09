@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\Shared\Application;
+namespace MusicProject\Shared\Infrastructure\DTO;
 
 class ResponseDTO extends DTO
 {
