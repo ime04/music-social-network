@@ -4,7 +4,7 @@ namespace MusicProject\Profile\User\Application;
 
 use MusicProject\Profile\User\Domain\Services\RegisterUser as RegisterUserDomainService;
 use MusicProject\Profile\User\Domain\UserFactory;
-use MusicProject\Shared\Application\RequestDTO;
+use MusicProject\Shared\Infrastructure\DTO\RequestDTO;
 
 class RegisterUser
 {
