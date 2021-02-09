@@ -27,8 +27,8 @@ class LoginUserAction
         try{
             $this->loginUser->__invoke(
                 new RequestDTO([
-                    'username' => $this->request->request->get('username'),
-                    'password' => $this->request->request->get('password')
+                    'username' => $this->request->query->get('username'),
+                    'password' => $this->request->query->get('password')
                 ]));
             return new Response(json_encode(["success" => 1]));
             // TODO: Implement __invoke() method.
