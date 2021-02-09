@@ -5,6 +5,8 @@ namespace MusicProject\Profile\User\Infrastructure\MySQLRepositories;
 use MusicProject\Shared\Infrastructure\MySQL\BaseMySQL;
 use MusicProject\Profile\User\Domain\User;
 use MusicProject\Profile\User\Domain\UserRepositoryInterface;
+use MusicProject\Shared\ValueObjects\Password\Password;
+use MusicProject\Shared\ValueObjects\Username\Username;
 
 class UserRepository extends BaseMySQL implements UserRepositoryInterface
 {
@@ -47,5 +49,14 @@ class UserRepository extends BaseMySQL implements UserRepositoryInterface
     public function getFactory()
     {
         return self::ENTITY_FACTORY;
+    }
+
+    public function getByUsernameAndPassword(Username $username, Password $password): User
+    {
+        $users = $this->builderMySQL->table(self::TABLE);
+        return $this->buildEntity(
+            $this->getFactory(),
+            $users-select()->where('username', $username)->where('password', $password)->get()
+        );
     }
 }

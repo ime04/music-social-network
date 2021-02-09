@@ -3,6 +3,7 @@
 namespace MusicProject\Profile\User\Infrastructure\Controllers;
 
 use MusicProject\Profile\User\Application\LoginUser;
+use MusicProject\Shared\Infrastructure\DTO\RequestDTO;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,10 +24,21 @@ class LoginUserAction
 
     public function __invoke() : Response
     {
-        // TODO: Implement __invoke() method.
-        /*try {
-            $this->loginUser
-        }*/
+        try{
+            $this->loginUser->__invoke(
+                new RequestDTO([
+                    'username' => $this->request->request->get('username'),
+                    'password' => $this->request->request->get('password')
+                ]));
+            return new Response(json_encode(["success" => 1]));
+            // TODO: Implement __invoke() method.
+        } catch (\InvalidArgumentException $exception) {
+            return new Response(
+                json_encode(["success" => 0, 'message' => $exception->getMessage()]),
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
     }
 
 
