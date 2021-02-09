@@ -35,7 +35,11 @@ registerButton.addEventListener('click', () => {
         method: 'POST',
         body: formData
     }).then(response => response.json())
-        .then(data => console.log(data)); //TODO hacer un login y meterte dentro de la plataforma
+        .then((data) => {
+            if (data.success != 1) {
+                alert(data.message);
+            }
+        }); //TODO hacer un login y meterte dentro de la plataforma
 });
 
     logginButton.addEventListener('click', () => {
