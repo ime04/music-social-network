@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class RegisterUserTest extends TestCase
 {
+    //TODO fix this test
     /** @test */
     public function success()
     {

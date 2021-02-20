@@ -19,8 +19,6 @@ class RegisterUser
         $this->userFactory = $userFactory;
     }
 
-    //recibe los valores primitivos del controlador, crea los value objects y la entidad (ej: User)
-    //TODO como parametro de entrada de __invoke va a recibir un object RequestDTO
     public function __invoke(RequestDTO $request) : void
     {
         $user = $this->userFactory->fromArray($request->getData());

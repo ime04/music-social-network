@@ -6,8 +6,7 @@ use \InvalidArgumentException;
 
 abstract class EntityFactoryBase
 {
-
-    public function buildFieldsNoOptional(array $data) : array
+    public function buildFieldsOptional(array $data) : array
     {
         $schema = $this->getSchema();
         $keys = $this->getKeys();

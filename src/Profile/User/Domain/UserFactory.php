@@ -12,7 +12,7 @@ class UserFactory extends EntityFactoryBase implements EntityFactoryInterface
     {
         return new User(
             new Username($data['username']),
-            new UserData($this->buildFieldsNoOptional($data))
+            new UserData($this->buildFieldsOptional($data))
         );
     }
 

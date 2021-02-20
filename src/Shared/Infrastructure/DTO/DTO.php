@@ -9,6 +9,7 @@ class DTO
     public function __construct(array $object)
     {
         $this->object = $object;
+        $this->setProperties($object);
     }
 
     public function getProperty(string $property)
@@ -19,6 +20,13 @@ class DTO
     public function getData() : array
     {
         return $this->object;
+    }
+
+    private function setProperties(array $object) : void
+    {
+        foreach ($object as $propertyName => $propertyValue) {
+            $this->object->$propertyName = $propertyValue;
+        }
     }
 
 }
