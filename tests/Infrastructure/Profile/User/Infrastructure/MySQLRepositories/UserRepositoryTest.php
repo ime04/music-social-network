@@ -5,6 +5,8 @@ namespace Tests\Infrastructure\Profile\User\Infrastructure\MySQLRepositories;
 use DI\Container;
 use MusicProject\Profile\User\Domain\UserFactory;
 use MusicProject\Profile\User\Infrastructure\MySQLRepositories\UserRepository;
+use MusicProject\Shared\ValueObjects\Password\Password;
+use MusicProject\Shared\ValueObjects\Username\Username;
 use PHPUnit\Framework\TestCase;
 
 class UserRepositoryTest extends TestCase
@@ -31,15 +33,7 @@ class UserRepositoryTest extends TestCase
     /** @test */
     public function register() : void
     {
-        $this->userRepository->insert(
-            $this->userFactory->fromArray([
-                'username' => self::USERNAME,
-                'password' => self::PASSWORD,
-                'email' => self::EMAIL
-            ])
-        );
-        $this->lastInsertID = $this->userRepository->getLastInsertID();
-        $user = $this->userRepository->getByUsername(self::USERNAME);
+        $this->insertUser();
         self::assertIsInt($this->lastInsertID);
     }
 
@@ -63,6 +57,23 @@ class UserRepositoryTest extends TestCase
     /** @test */
     public function getByUsernameAndPassword() : void
     {
-        //TODO crear un test para el metodo getByUsernameAndPassword
+        $this->insertUser();
+        $user = $this->userRepository->getByUsernameAndPassword(
+            new Username(self::USERNAME),
+            new Password(self::PASSWORD)
+        );
+        self::assertNotEmpty($user);
+    }
+
+    public function insertUser(): void
+    {
+        $this->userRepository->insert(
+            $this->userFactory->fromArray([
+                'username' => self::USERNAME,
+                'password' => self::PASSWORD,
+                'email' => self::EMAIL
+            ])
+        );
+        $this->lastInsertID = $this->userRepository->getLastInsertID();
     }
 }
