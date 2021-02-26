@@ -23,5 +23,6 @@ class RegisterUser
     {
         $user = $this->userFactory->fromArray($request->getData());
         $this->registerUser->__invoke($user);
+        //TODO crear servicio para enviar un mail
     }
 }

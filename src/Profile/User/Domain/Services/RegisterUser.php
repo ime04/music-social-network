@@ -14,9 +14,9 @@ class RegisterUser
       $this->userRepository = $userRepository;  
     }
 
-    //siempre funciona con value objects o entidades (ej User)
     public function __invoke(User $user) : void
     {
+        //TODO chequear que el usuario no existe con username unico
         $this->userRepository->insert($user);
     }
 }
