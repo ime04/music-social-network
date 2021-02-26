@@ -4,6 +4,7 @@ namespace MusicProject\Profile\User\Infrastructure\Controllers;
 
 use MusicProject\Profile\User\Application\LoginUser;
 use MusicProject\Shared\Infrastructure\DTO\RequestDTO;
+use MusicProject\Shared\Infrastructure\MySQL\EmptyResult;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -37,7 +38,13 @@ class LoginUserAction
                 json_encode(["success" => 0, 'message' => $exception->getMessage()]),
                 Response::HTTP_BAD_REQUEST
             );
+        } catch (EmptyResult $exception) {
+            return new Response(
+                json_encode(["success" => 0, 'message' => $exception->getMessage()]),
+                Response::HTTP_NOT_FOUND
+            );
         }
+
 
     }
 

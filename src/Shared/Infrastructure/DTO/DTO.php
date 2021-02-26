@@ -9,7 +9,7 @@ class DTO
     public function __construct(array $object)
     {
         $this->object = $object;
-        $this->setProperties($object);
+       // $this->setProperties($object);
     }
 
     public function getProperty(string $property)

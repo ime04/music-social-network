@@ -52,6 +52,9 @@ abstract class BaseMySQL
     protected function buildEntity(string $factoryClass, array $result) : EntityBase
     {
         $factory = $this->container->get($factoryClass);
+        if (empty($result[0])) {
+            throw new EmptyResult('Register not found');
+        }
         return $factory->fromArray($result[0]);
     }
 }
