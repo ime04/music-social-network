@@ -12,7 +12,7 @@ use Psr\Container\ContainerInterface;
 abstract class BaseMySQL
 {
     private const HOST = 'localhost';
-    private const DATABASE = 'MusicSocialNetWork';
+    private const DATABASE = 'MusicSocialNetwork';
     private const USERNAME = 'victor';
     private const PASSWORD = '=PM~U.MfJvg%k2L}';
 
