@@ -2,8 +2,6 @@
 
 namespace MusicProject\Shared\Domain\Entity;
 
-use \InvalidArgumentException;
-
 abstract class EntityFactoryBase
 {
     public function buildFieldsOptional(array $data) : array
@@ -12,25 +10,13 @@ abstract class EntityFactoryBase
         $keys = $this->getKeys();
         $entityData = array();
         foreach ($data as $propertyName => $value) {
-            if (! isset($schema[$propertyName])) {
-                $this->someFieldIsNotAllowedForThisEntity($propertyName, $value);
-            }
-            if (! in_array($propertyName, $keys, true)) {
-                $entityData[$propertyName] = new $schema[$propertyName]($value);
+            if (isset($schema[$propertyName])) {
+                if (! in_array($propertyName, $keys, true)) {
+                    $entityData[$propertyName] = new $schema[$propertyName]($value);
+                }
             }
         }
         return $entityData;
-    }
-
-    private function someFieldIsNotAllowedForThisEntity(string $propertyName, $value) : void
-    {
-        throw new InvalidArgumentException(
-            sprintf(
-                'This %s with this value: %s is not allowed for this entity',
-                $propertyName,
-                $value
-            )
-        );
     }
 
     protected function getSchema() : array
