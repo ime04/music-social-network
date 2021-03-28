@@ -31,7 +31,7 @@ registerButton.addEventListener('click', () => {
     formData.append('password', userPass);
     formData.append('email', userEmail);
 
-    fetch('http://vps551323.ovh.net/user/register', {
+    fetch('http://vps-8475d2d8.vps.ovh.net/user/register', {
         method: 'POST',
         body: formData
     }).then(response => response.json())
@@ -46,7 +46,7 @@ registerButton.addEventListener('click', () => {
         const user = document.getElementById('user-name-login').value;
         const pass = document.getElementById('pass-login').value;
 
-        fetch('http://vps551323.ovh.net/user/login', {
+        fetch('http://vps-8475d2d8.vps.ovh.net/user/login', {
             method: 'GET',
             body: formLogin
         }).then(response => {
