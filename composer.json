@@ -22,6 +22,6 @@
   "require-dev": {
     "phpunit/phpunit": "^7"
   },
-  "name": "music_social_network",
+  "name": "vendor/musicsocialproject",
   "description": ""
 }
