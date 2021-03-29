@@ -16,9 +16,12 @@
     "symfony/http-kernel": "^5.1",
     "guzzlehttp/guzzle": "^7.2",
     "fzaninotto/faker": "^1.9",
-    "ext-json": "^7.4"
+    "ext-json": "^7.4",
+    "php-amqplib/php-amqplib": "^3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7"
-  }
+  },
+  "name": "music_social_network",
+  "description": ""
 }
