@@ -16,4 +16,6 @@ interface UserRepositoryInterface
     public function getByUsername(string $username) : User;
 
     public function getByUsernameAndPassword(Username $username, Password $password) : User;
+
+    public function getLastInsertID() : int;
 }

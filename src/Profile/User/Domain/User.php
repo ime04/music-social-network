@@ -40,4 +40,9 @@ class User extends EntityBase
     {
         return $this->email;
     }
+
+    public function setID(ID $id) : void
+    {
+        $this->id = $id;
+    }
 }

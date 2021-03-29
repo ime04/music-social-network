@@ -4,6 +4,7 @@ namespace MusicProject\Profile\User\Domain\Services;
 
 use MusicProject\Profile\User\Domain\User;
 use MusicProject\Profile\User\Domain\UserRepositoryInterface;
+use MusicProject\Shared\ValueObjects\ID\ID;
 
 class RegisterUser
 {
@@ -14,9 +15,10 @@ class RegisterUser
       $this->userRepository = $userRepository;  
     }
 
-    public function __invoke(User $user) : void
+    public function __invoke(User $user) : User
     {
-        //TODO chequear que el usuario no existe con username unico
         $this->userRepository->insert($user);
+        $user->setID(new ID($this->userRepository->getLastInsertID()));
+        return $user;
     }
 }

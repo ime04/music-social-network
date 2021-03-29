@@ -2,6 +2,7 @@
 
 namespace MusicProject\Profile\User\Application;
 
+use MusicProject\Profile\User\Domain\Events\UserRegistered;
 use MusicProject\Profile\User\Domain\Services\RegisterUser as RegisterUserDomainService;
 use MusicProject\Profile\User\Domain\UserFactory;
 use MusicProject\Shared\Infrastructure\DTO\RequestDTO;
@@ -21,8 +22,9 @@ class RegisterUser
 
     public function __invoke(RequestDTO $request) : void
     {
-        $user = $this->userFactory->fromArray($request->getData());
-        $this->registerUser->__invoke($user);
-        //TODO crear servicio para enviar un mail
+        $user = $this->registerUser->__invoke(
+            $this->userFactory->fromArray($request->getData())
+        );
+        $event = new UserRegistered($user);
     }
 }
