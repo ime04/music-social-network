@@ -4,5 +4,5 @@ namespace MusicProject\Shared\Domain\Events;
 
 interface EventBus
 {
-    public function publish() : void;
+    public function publish(DomainEvent ...$events) : void;
 }

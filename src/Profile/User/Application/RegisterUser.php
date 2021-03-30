@@ -5,19 +5,23 @@ namespace MusicProject\Profile\User\Application;
 use MusicProject\Profile\User\Domain\Events\UserRegistered;
 use MusicProject\Profile\User\Domain\Services\RegisterUser as RegisterUserDomainService;
 use MusicProject\Profile\User\Domain\UserFactory;
+use MusicProject\Shared\Domain\Events\EventBus;
 use MusicProject\Shared\Infrastructure\DTO\RequestDTO;
 
 class RegisterUser
 {
     private RegisterUserDomainService $registerUser;
     private UserFactory $userFactory;
+    private EventBus $eventBus;
 
     public function __construct(
         RegisterUserDomainService $registerUser,
-        UserFactory $userFactory
+        UserFactory $userFactory,
+        EventBus $eventBus
     ) {
         $this->registerUser = $registerUser;
         $this->userFactory = $userFactory;
+        $this->eventBus = $eventBus;
     }
 
     public function __invoke(RequestDTO $request) : void
@@ -25,6 +29,8 @@ class RegisterUser
         $user = $this->registerUser->__invoke(
             $this->userFactory->fromArray($request->getData())
         );
-        $event = new UserRegistered($user);
+        $this->eventBus->publish(
+            new UserRegistered($user)
+        );
     }
 }
