@@ -15,6 +15,7 @@ class InMemoryEventBus implements EventBus
 
     public function __construct(iterable $subscribers)
     {
+        var_dump($subscribers);
         $this->bus = new MessageBus([
             new HandleMessageMiddleware(
                 new HandlersLocator($subscribers)
@@ -28,6 +29,7 @@ class InMemoryEventBus implements EventBus
 
     public function publish(DomainEvent ...$events): void
     {
+        var_dump($events);
         try {
             foreach ($events as $event) {
                 $this->notify($event);
