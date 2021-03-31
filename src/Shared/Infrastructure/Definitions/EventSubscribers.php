@@ -7,7 +7,7 @@ class EventSubscribers
     public function __invoke() : array
     {
         return array_merge(
-            include_once(__DIR__ . '../../../Profile/Config/EventsSubscribers.php')
+            include_once(__DIR__ . '/../../../Profile/Config/EventsSubscribers.php')
         );
     }
 }
