@@ -24,12 +24,12 @@ class InMemoryEventBus implements EventBus
     }
     public function notify(DomainEvent $event): void
     {
-        $this->bus->dispatch($event);
+        var_dump($event);
+        $this->bus->dispatch(new $event());
     }
 
     public function publish(DomainEvent ...$events): void
     {
-        var_dump($events);
         try {
             foreach ($events as $event) {
                 $this->notify($event);
