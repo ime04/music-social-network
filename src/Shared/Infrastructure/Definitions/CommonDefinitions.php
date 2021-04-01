@@ -8,6 +8,6 @@ use MusicProject\Shared\Domain\Events\EventBus;
 return [
     Request::class => Request::createFromGlobals(),
     EventBus::class => new InMemoryEventBus(
-        $container->call(EventSubscribers::class)
+        (new \DI\Container())->call(EventSubscribers::class)
     )
 ];
