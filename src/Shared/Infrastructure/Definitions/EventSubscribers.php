@@ -2,12 +2,23 @@
 
 namespace MusicProject\Shared\Infrastructure\Definitions;
 
+use MusicProject\Profile\Config\ProfileEventsSubscribers;
+use Psr\Container\ContainerInterface;
+
 class EventSubscribers
 {
+    private ContainerInterface $container;
+
+    public function __construct(
+        ContainerInterface $container
+    ) {
+        $this->container = $container;
+    }
+
     public function __invoke() : array
     {
         return array_merge(
-            include_once(__DIR__ . '/../../../Profile/Config/ProfileEventsSubscribers.php')
+            $this->container->call(ProfileEventsSubscribers::class)
         );
     }
 }
