@@ -18,7 +18,7 @@ class EventSubscribers
     public function __invoke() : array
     {
         return [
-            UserRegistered::class => $this->sendEmailForUserRegistered
+            UserRegistered::class => [$this->sendEmailForUserRegistered]
         ];
         /*return array_merge(
             include_once(__DIR__ . '/../../../Profile/Config/EventsSubscribers.php')

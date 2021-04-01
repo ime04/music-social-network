@@ -15,7 +15,6 @@ class InMemoryEventBus implements EventBus
 
     public function __construct(iterable $subscribers)
     {
-        var_dump($subscribers);
         $this->bus = new MessageBus([
             new HandleMessageMiddleware(
                 new HandlersLocator($subscribers)
