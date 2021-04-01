@@ -24,8 +24,7 @@ class InMemoryEventBus implements EventBus
     }
     public function notify(DomainEvent $event): void
     {
-        var_dump($event);
-        $this->bus->dispatch(new $event());
+        $this->bus->dispatch($event);
     }
 
     public function publish(DomainEvent ...$events): void
