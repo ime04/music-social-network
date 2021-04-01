@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicProject\Profile\User\Config;
+namespace MusicProject\Profile\Config;
 
 use MusicProject\Profile\User\Infrastructure\Controllers\LoginUserAction;
 use MusicProject\Profile\User\Infrastructure\Controllers\RegisterUserAction;
