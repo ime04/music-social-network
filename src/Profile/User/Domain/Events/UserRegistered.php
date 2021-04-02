@@ -5,7 +5,7 @@ namespace MusicProject\Profile\User\Domain\Events;
 use MusicProject\Profile\User\Domain\User;
 use MusicProject\Shared\Domain\Events\DomainEvent;
 
-class UserRegistered implements DomainEvent
+class UserRegistered extends DomainEvent
 {
     private int $id;
     private string $userName;
@@ -30,5 +30,10 @@ class UserRegistered implements DomainEvent
     public function email() : string
     {
         return $this->email;
+    }
+
+    public static function eventName() : string
+    {
+        return 'profile.user.1.register';
     }
 }

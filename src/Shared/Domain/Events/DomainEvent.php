@@ -2,7 +2,7 @@
 
 namespace MusicProject\Shared\Domain\Events;
 
-interface DomainEvent
+abstract class DomainEvent
 {
-
+    abstract public static function eventName() : string;
 }
