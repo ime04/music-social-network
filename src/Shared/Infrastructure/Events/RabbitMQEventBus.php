@@ -25,12 +25,12 @@ class RabbitMQEventBus implements EventBus
 
     public function publish(DomainEvent ...$events): void
     {
+        $this->channel->queue_declare('queue_test', false, false, false, false);
         array_map($this->publisher(), $events);
     }
 
     private function publisher(): callable
     {
-        $this->channel->queue_declare('queue_test', false, false, false, false);
         return function (DomainEvent $event) {
             //$body       = DomainEventJsonSerializer::serialize($event);
             //$routingKey = $event::eventName();

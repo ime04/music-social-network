@@ -11,8 +11,11 @@ class UserRegistered extends DomainEvent
     private string $userName;
     private string $email;
 
-    public function __construct(User $user)
-    {
+    public function __construct(
+        User $user,
+        string $eventID = null,
+        string $occurredOn = null
+    ) {
         $this->id = $user->id()->value();
         $this->userName = $user->userName()->value();
         $this->email = $user->email()->value();
