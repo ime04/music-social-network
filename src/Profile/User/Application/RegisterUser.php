@@ -30,7 +30,11 @@ class RegisterUser
             $this->userFactory->fromArray($request->getData())
         );
         $this->eventBus->publish(
-            new UserRegistered($user)
+            new UserRegistered(
+                $user->id()->value(),
+                $user->userName()->value(),
+                $user->email()->value()
+            )
         );
     }
 }

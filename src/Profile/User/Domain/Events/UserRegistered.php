@@ -2,37 +2,40 @@
 
 namespace MusicProject\Profile\User\Domain\Events;
 
-use MusicProject\Profile\User\Domain\User;
 use MusicProject\Shared\Domain\Events\DomainEvent;
 
 class UserRegistered extends DomainEvent
 {
-    private int $id;
     private string $userName;
     private string $email;
 
     public function __construct(
-        User $user,
+        int $userID,
+        string $userName,
+        string $email,
         string $eventID = null,
         string $occurredOn = null
     ) {
-        $this->id = $user->id()->value();
-        $this->userName = $user->userName()->value();
-        $this->email = $user->email()->value();
-    }
-    public function id() : int
-    {
-        return $this->id;
+        parent::__construct($userID, $eventID, $occurredOn);
+        $this->userName = $userName;
+        $this->email = $email;
     }
 
-    public function userName() : string
+    public function toPrimitives() : array
     {
-        return $this->userName;
+        return [
+            'userName' => $this->userName,
+            'email' => $this->email
+        ];
     }
 
-    public function email() : string
-    {
-        return $this->email;
+    public static function fromPrimitives(
+        int $userID,
+        array $body,
+        string $eventID,
+        string $occurredOn
+    ) : DomainEvent {
+        return new self($userID, $body['userName'], $body['email'], $eventID, $occurredOn);
     }
 
     public static function eventName() : string
