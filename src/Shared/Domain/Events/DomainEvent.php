@@ -16,8 +16,24 @@ abstract class DomainEvent
         $this->aggregateID = $aggregateID;
         $this->eventID = $eventID ?? Uuid::generateRandomUuid()->value();
         $this->occurredOn = $occurredOn ?? UnixTime::currentTime()->value();
+    }
 
+    public function aggregateID() : string
+    {
+        return $this->aggregateID;
+    }
+
+    public function eventID() : string
+    {
+        return $this->eventID;
+    }
+
+    public function occurredOn() : string
+    {
+        return $this->occurredOn;
     }
 
     abstract public static function eventName() : string;
+
+    abstract public function toPrimitives() : array;
 }

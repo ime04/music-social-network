@@ -6,6 +6,7 @@ use MusicProject\Shared\Domain\Events\DomainEvent;
 use MusicProject\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 class RabbitMQEventBus implements EventBus
 {
@@ -32,20 +33,29 @@ class RabbitMQEventBus implements EventBus
     private function publisher(): callable
     {
         return function (DomainEvent $event) {
-            //$body       = DomainEventJsonSerializer::serialize($event);
-            //$routingKey = $event::eventName();
-            //$messageId  = $event->eventId();
-
-            /*$this->connection->exchange($this->exchangeName)->publish(
-                $body,
-                $routingKey,
-                AMQP_NOPARAM,
-                [
-                    'message_id'       => $messageId,
-                    'content_type'     => 'application/json',
-                    'content_encoding' => 'utf-8',
-                ]
-            );*/
+            $serializeEvent = $this->serializeEvent($event);
+            $routingKey = $event::eventName();
+            //$messageID = $event->eventID();
+            $message = new AMQPMessage($serializeEvent);
+            $this->channel->basic_publish($message, '', $routingKey);
         };
+    }
+
+    private function serializeEvent(DomainEvent $event)
+    {
+        return json_encode([
+            'data' => [
+                'id' => $event->eventID(),
+                'type' => $event::eventName(),
+                'occurredOn' => $event->occurredOn(),
+                'attributes' => array_merge(
+                    $event->toPrimitives(),
+                    [
+                        'id' => $event->aggregateID()
+                    ]
+                )
+            ],
+            'meta' => []
+        ]);
     }
 }
