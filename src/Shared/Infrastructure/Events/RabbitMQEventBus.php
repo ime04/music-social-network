@@ -22,11 +22,18 @@ class RabbitMQEventBus implements EventBus
     {
         $this->connection = new AMQPStreamConnection(self::HOST, self::PORT, self::USER, self::PASSWORD);
         $this->channel = $this->connection->channel();
+        $this->channel->exchange_declare(
+            'queue_test',
+            'fanout', # type
+            false,    # passive
+            false,    # durable
+            false     # auto_delete
+        );
+        //$this->channel->queue_declare('queue_test', false, false, false, false);
     }
 
     public function publish(DomainEvent ...$events) : void
     {
-        $this->channel->queue_declare('queue_test', false, false, false, false);
         array_map($this->publisher(), $events);
         $this->closeRabbit();
     }
