@@ -28,7 +28,7 @@ class RabbitMQEventBus implements EventBus
             self::EXCHANGE_NAME,
             'fanout', # type
             false,    # passive
-            false,    # durable
+            true,    # durable
             false     # auto_delete
         );
         //$this->channel->queue_declare('queue_test', false, false, false, false);
