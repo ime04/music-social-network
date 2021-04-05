@@ -28,6 +28,7 @@ class RabbitMQEventBus implements EventBus
     {
         $this->channel->queue_declare('queue_test', false, false, false, false);
         array_map($this->publisher(), $events);
+        $this->closeRabbit();
     }
 
     private function publisher() : callable
@@ -58,5 +59,11 @@ class RabbitMQEventBus implements EventBus
             ],
             'meta' => []
         ]);
+    }
+
+    private function closeRabbit() : void
+    {
+        $this->channel->close();
+        $this->connection->close();
     }
 }
