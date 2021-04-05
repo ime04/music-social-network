@@ -3,6 +3,7 @@
 namespace MusicProject\Shared\Infrastructure\Events;
 
 use AMQPException;
+use AMQPExchange;
 use MusicProject\Shared\Domain\Events\DomainEvent;
 use MusicProject\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Channel\AMQPChannel;
@@ -19,12 +20,13 @@ class RabbitMQEventBus implements EventBus
 
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
+    private AMQPExchange $exchange;
 
     public function __construct()
     {
         $this->connection = new AMQPStreamConnection(self::HOST, self::PORT, self::USER, self::PASSWORD);
         $this->channel = $this->connection->channel();
-        $this->exchange = new \AMQPExchange();
+        $this->exchange = new AMQPExchange($this->channel);
         $this->exchange->setName(self::EXCHANGE_NAME);
         $this->exchange->setType(AMQP_EX_TYPE_DIRECT);
         $this->exchange->setFlags(AMQP_DURABLE);
