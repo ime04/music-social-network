@@ -3,7 +3,6 @@
 namespace MusicProject\Shared\Infrastructure\Events;
 
 use AMQPException;
-use AMQPExchange;
 use MusicProject\Shared\Domain\Events\DomainEvent;
 use MusicProject\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Channel\AMQPChannel;
@@ -20,17 +19,18 @@ class RabbitMQEventBus implements EventBus
 
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
-    private AMQPExchange $exchange;
 
     public function __construct()
     {
         $this->connection = new AMQPStreamConnection(self::HOST, self::PORT, self::USER, self::PASSWORD);
         $this->channel = $this->connection->channel();
-        $this->exchange = new AMQPExchange($this->channel);
-        $this->exchange->setName(self::EXCHANGE_NAME);
-        $this->exchange->setType(AMQP_EX_TYPE_DIRECT);
-        $this->exchange->setFlags(AMQP_DURABLE);
-        $this->exchange->declare();
+        $this->channel->exchange_declare(
+            self::EXCHANGE_NAME,
+            'fanout', # type
+            false,    # passive
+            true,    # durable
+            false     # auto_delete
+        );
         //$this->channel->queue_declare('queue_test', false, false, false, false);
     }
 
@@ -58,13 +58,7 @@ class RabbitMQEventBus implements EventBus
         //$messageID = $event->eventID();
         $message = new AMQPMessage($serializeEvent);
         var_dump($serializeEvent);
-        $queue = new \AMQPQueue($this->channel);
-        $queue->setName('sendemailforuserregistered');
-        $queue->setFlags(AMQP_DURABLE);
-        $queue->declare();
-        $queue->bind(self::EXCHANGE_NAME, $routingKey);
-        $this->exchange->publish($message, $routingKey);
-        //$this->channel->basic_publish($message, self::EXCHANGE_NAME, $routingKey);
+        $this->channel->basic_publish($message, self::EXCHANGE_NAME, $routingKey);
     }
 
     private function serializeEvent(DomainEvent $event) : string
