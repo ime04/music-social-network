@@ -51,7 +51,7 @@ class RabbitMQEventBus implements EventBus
         $routingKey = $event::eventName();
         $message = new AMQPMessage($serializeEvent);
         var_dump($serializeEvent);
-        $this->channel->basic_publish($message, self::QUEUE_NAME, $routingKey);
+        $this->channel->basic_publish($message, '', self::QUEUE_NAME);
     }
 
     private function serializeEvent(DomainEvent $event) : string
