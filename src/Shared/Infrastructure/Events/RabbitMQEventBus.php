@@ -14,6 +14,7 @@ class RabbitMQEventBus implements EventBus
     private const PORT = 5672;
     private const USER = 'ismael';
     private const PASSWORD = '1234';
+    private const EXCHANGE_NAME = 'queue_test';
 
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
@@ -23,7 +24,7 @@ class RabbitMQEventBus implements EventBus
         $this->connection = new AMQPStreamConnection(self::HOST, self::PORT, self::USER, self::PASSWORD);
         $this->channel = $this->connection->channel();
         $this->channel->exchange_declare(
-            'queue_test',
+            self::EXCHANGE_NAME,
             'fanout', # type
             false,    # passive
             false,    # durable
@@ -46,7 +47,7 @@ class RabbitMQEventBus implements EventBus
             //$messageID = $event->eventID();
             $message = new AMQPMessage($serializeEvent);
             var_dump($serializeEvent);
-            $this->channel->basic_publish($message, '', $routingKey);
+            $this->channel->basic_publish($message, self::EXCHANGE_NAME, $routingKey);
         };
     }
 
