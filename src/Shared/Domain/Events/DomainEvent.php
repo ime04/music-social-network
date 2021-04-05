@@ -7,6 +7,8 @@ use MusicProject\Shared\ValueObjects\Uuid\Uuid;
 
 abstract class DomainEvent
 {
+    protected const PROJECT_NAME = 'musicsocialnetwork';
+
     private string $aggregateID;
     private string $eventID;
     private string $occurredOn;

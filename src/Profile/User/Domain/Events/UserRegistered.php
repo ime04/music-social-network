@@ -40,6 +40,6 @@ class UserRegistered extends DomainEvent
 
     public static function eventName() : string
     {
-        return 'profile.user.1.register';
+        return parent::PROJECT_NAME . '.profile.user.1.register';
     }
 }
