@@ -2,6 +2,7 @@
 
 namespace MusicProject\Shared\Infrastructure\Events;
 
+use AMQPException;
 use MusicProject\Shared\Domain\Events\DomainEvent;
 use MusicProject\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Channel\AMQPChannel;
@@ -14,7 +15,7 @@ class RabbitMQEventBus implements EventBus
     private const PORT = 5672;
     private const USER = 'ismael';
     private const PASSWORD = '1234';
-    private const EXCHANGE_NAME = 'queue_test';
+    private const EXCHANGE_NAME = 'domain_events';
 
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
@@ -42,13 +43,22 @@ class RabbitMQEventBus implements EventBus
     private function publisher() : callable
     {
         return function (DomainEvent $event) {
-            $serializeEvent = $this->serializeEvent($event);
-            $routingKey = $event::eventName();
-            //$messageID = $event->eventID();
-            $message = new AMQPMessage($serializeEvent);
-            var_dump($serializeEvent);
-            $this->channel->basic_publish($message, self::EXCHANGE_NAME, $routingKey);
+            try {
+                $this->publishEvent($event);
+            } catch (AMQPException $exception) {
+                echo $exception->getMessage();
+            }
         };
+    }
+
+    private function publishEvent(DomainEvent $event) : void
+    {
+        $serializeEvent = $this->serializeEvent($event);
+        $routingKey = $event::eventName();
+        //$messageID = $event->eventID();
+        $message = new AMQPMessage($serializeEvent);
+        var_dump($serializeEvent);
+        $this->channel->basic_publish($message, self::EXCHANGE_NAME, $routingKey);
     }
 
     private function serializeEvent(DomainEvent $event) : string
