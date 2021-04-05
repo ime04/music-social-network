@@ -24,7 +24,7 @@ class RabbitMQEventBus implements EventBus
     {
         $this->connection = new AMQPStreamConnection(self::HOST, self::PORT, self::USER, self::PASSWORD);
         $this->channel = $this->connection->channel();
-        $this->channel->queue_declare(self::QUEUE_NAME, false, false, false, false);
+        $this->channel->queue_declare(self::QUEUE_NAME, false, true, false, false);
         //$this->channel->queue_declare('queue_test', false, false, false, false);
     }
 
@@ -49,7 +49,12 @@ class RabbitMQEventBus implements EventBus
     {
         $serializeEvent = $this->serializeEvent($event);
         $routingKey = $event::eventName();
-        $message = new AMQPMessage($serializeEvent);
+        $message = new AMQPMessage(
+            $serializeEvent,
+            [
+                'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
+            ]
+        );
         var_dump($serializeEvent);
         $this->channel->basic_publish($message, '', self::QUEUE_NAME);
     }
