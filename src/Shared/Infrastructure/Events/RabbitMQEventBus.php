@@ -8,24 +8,29 @@ use MusicProject\Shared\Domain\Events\EventBus;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use Psr\Container\ContainerInterface;
 
 class RabbitMQEventBus implements EventBus
 {
-    private const HOST = 'localhost';
-    private const PORT = 5672;
-    private const USER = 'ismael';
-    private const PASSWORD = '1234';
-    private const QUEUE_NAME = 'domain_events';
-
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
 
-    public function __construct()
+    public function __construct(ContainerInterface $container)
     {
-        $this->connection = new AMQPStreamConnection(self::HOST, self::PORT, self::USER, self::PASSWORD);
+        $this->connection = new AMQPStreamConnection(
+            $container->get('RABBIT_MQ_CONSTANTS')['HOST'],
+            $container->get('RABBIT_MQ_CONSTANTS')['PORT'],
+            $container->get('RABBIT_MQ_CONSTANTS')['USER'],
+            $container->get('RABBIT_MQ_CONSTANTS')['PASSWORD']
+        );
         $this->channel = $this->connection->channel();
-        $this->channel->queue_declare(self::QUEUE_NAME, false, true, false, false);
-        //$this->channel->queue_declare('queue_test', false, false, false, false);
+        $this->channel->queue_declare(
+            $container->get('RABBIT_MQ_CONSTANTS')['QUEUE'],
+            false,
+            true,
+            false,
+            false
+        );
     }
 
     public function publish(DomainEvent ...$events) : void
@@ -48,14 +53,12 @@ class RabbitMQEventBus implements EventBus
     private function publishEvent(DomainEvent $event) : void
     {
         $serializeEvent = $this->serializeEvent($event);
-        $routingKey = $event::eventName();
         $message = new AMQPMessage(
             $serializeEvent,
             [
                 'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
             ]
         );
-        var_dump($serializeEvent);
         $this->channel->basic_publish($message, '', self::QUEUE_NAME);
     }
 
