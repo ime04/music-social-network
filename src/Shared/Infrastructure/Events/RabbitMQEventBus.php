@@ -14,6 +14,7 @@ class RabbitMQEventBus implements EventBus
 {
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
+    private string $queueName;
 
     public function __construct(ContainerInterface $container)
     {
@@ -23,9 +24,10 @@ class RabbitMQEventBus implements EventBus
             $container->get('RABBIT_MQ_CONSTANTS')['USER'],
             $container->get('RABBIT_MQ_CONSTANTS')['PASSWORD']
         );
+        $this->queueName = $container->get('RABBIT_MQ_CONSTANTS')['QUEUE'];
         $this->channel = $this->connection->channel();
         $this->channel->queue_declare(
-            $container->get('RABBIT_MQ_CONSTANTS')['QUEUE'],
+            $this->queueName,
             false,
             true,
             false,
@@ -59,7 +61,7 @@ class RabbitMQEventBus implements EventBus
                 'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
             ]
         );
-        $this->channel->basic_publish($message, '', self::QUEUE_NAME);
+        $this->channel->basic_publish($message, '', $this->queueName);
     }
 
     private function serializeEvent(DomainEvent $event) : string
