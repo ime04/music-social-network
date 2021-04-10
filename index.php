@@ -14,11 +14,10 @@ use MusicProject\Shared\Infrastructure\Routes\Routes;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use MusicProject\Shared\Infrastructure\Services\InitContainer;
 
-try
-{
+try {
     global $container;
     $container = (new InitContainer())->get();
-    $routes = $container->call(Routes::class, []);
+    $routes = $container->call(Routes::class);
     $context = new RequestContext();
     $context->fromRequest(Request::createFromGlobals());
     $matcher = new UrlMatcher($routes, $context);
@@ -31,5 +30,5 @@ try
 } catch (ResourceNotFoundException $exception) {
     echo $exception->getMessage();
 } catch (MethodNotAllowedException $exception) {
-    echo 'Método no permitido' . $exception->getMessage();
+    echo 'Method not allowed: ' . $exception->getMessage();
 }

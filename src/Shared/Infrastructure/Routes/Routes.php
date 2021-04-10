@@ -4,7 +4,8 @@ namespace MusicProject\Shared\Infrastructure\Routes;
 
 use Symfony\Component\Routing\RouteCollection;
 
-class Routes {
+class Routes
+{
 
     private LoadRoutes $loadRoutes;
     private RouteCollection $routes;
